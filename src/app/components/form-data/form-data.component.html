@@ -1,0 +1,111 @@
+<ion-grid style="height: 100%;">
+  <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+    <ion-col size="12" size-md="6" size-lg="4">
+      <h1 class="ion-text-center">INGRESA TU LUGAR TURISTICO</h1>
+      <form [formGroup]="form">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+            @if (name.touched && name.invalid) {
+              @if (name.hasError('required')) {
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-textarea formControlName="description"></ion-textarea>
+            @if(description.touched && description.invalid){
+              @if (description.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(description.hasError('maxlength')){
+                <ion-note color="danger">*Maximo 200 caracteres</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Provincia</ion-label>
+            <ion-input type="text" formControlName="provincia"></ion-input>
+            @if (provincia.invalid && provincia.touched){
+              @if (provincia.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if (provincia.hasError('hasSpace')){
+                <ion-note color="danger">*No se permiten espacios</ion-note>
+              }
+              @if(provincia.hasError('notNumber')){
+                <ion-note color="danger">*No se permiten numeros</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ciudad</ion-label>
+            <ion-input type="text" formControlName="city"></ion-input>
+            @if (city.invalid && city.touched){
+              @if (city.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(city.hasError('hasSpace')){
+                <ion-note color="danger">*No se permiten espacios</ion-note>
+              }
+              @if(city.hasError('notNumber')){
+                <ion-note color="danger">*No se permiten numeros</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Tipo de Lugar</ion-label>
+            <ion-input type="text" formControlName="typePlace"></ion-input>
+            @if(typePlace.invalid && typePlace.touched){
+              @if (typePlace.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(typePlace.hasError('hasSpace')){
+                <ion-note color="danger">*No se permiten espacios</ion-note>
+              }
+              @if(typePlace.hasError('notNumber')){
+                <ion-note color="danger">*No se permiten numeros</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Caracteristicas</ion-label>
+            <ion-input type="text" formControlName="caracteristics"></ion-input>
+            @if(caracteristics.touched && caracteristics.invalid){
+              @if (caracteristics.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(caracteristics.hasError('maxlength')){
+                <ion-note color="danger">*Maximo 200 caracteres</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Horario de Atención</ion-label>
+            <ion-input type="text" formControlName="schedules"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input type="text" formControlName="price"></ion-input>
+            @if(price.invalid && price.touched){
+              @if (price.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(price.hasError('min')){
+                <ion-note color="danger">*El precio minimo es 0</ion-note>
+              }
+              @if(price.hasError('max')){
+                <ion-note color="danger">*El precio maximo es 10000</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-button shape="round" expand="full" type="submit" style="margin-top: 20px;" [disabled]="form.invalid">
+            Ingresar Lugar Turistico
+          </ion-button>
+        </ion-list>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-grid>

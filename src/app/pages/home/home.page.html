@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <h1>Diario Turistico</h1>
+    <p>Bienvenido a la aplicación de Diario Turístico. Aquí puedes registrar y compartir tus experiencias de viaje.</p>
+
+    <ion-button shape="round" expand="full" href="/create-place" style="margin-top: 20px;">
+      Crea tu Propio lugar Turistico
+    </ion-button>
+
+    <ion-button shape="round" expand="full" href="auth/login" style="margin-top: 20px;">
+      Iniciar Sesion
+    </ion-button>
+  </div>
+
+  <!-- Contenedor de scroll horizontal -->
+  <div class="cards-scroll-container">
+    <h2 class="section-title">Lugares Destacados</h2>
+
+    <div class="cards-wrapper">
+      <!-- Tarjetas dinámicas desde el array -->
+      <ion-card class="place-card" *ngFor="let place of places" (click)="goToPlaceDetail(place.id)">
+        <img [alt]="place.name" [src]="place.image" />
+        <ion-card-header>
+          <ion-card-title>{{ place.name }}</ion-card-title>
+          <ion-card-subtitle>{{ place.category }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ place.description }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

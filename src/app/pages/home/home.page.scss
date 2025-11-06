@@ -1,0 +1,80 @@
+.cards-scroll-container {
+  padding: 20px 0;
+
+  .section-title {
+    padding: 0 16px;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+// Wrapper que permite el scroll horizontal
+.cards-wrapper {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 16px;
+  padding: 0 16px 16px 16px;
+  scroll-behavior: smooth;
+
+  // Ocultar scrollbar pero mantener funcionalidad
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  // Efecto de snap (opcional, hace que las tarjetas se alineen al deslizar)
+  scroll-snap-type: x mandatory;
+}
+
+// Estilos de cada tarjeta
+.place-card {
+  flex: 0 0 280px; // Ancho fijo de cada tarjeta
+  min-width: 280px;
+  max-width: 280px;
+  scroll-snap-align: start; // Para el efecto snap
+  margin: 0; // Remover margen default de ion-card
+
+  img {
+    height: 200px; // Altura fija para las imágenes
+    object-fit: cover; // Mantener proporción sin distorsión
+    width: 100%;
+  }
+
+  ion-card-header {
+    padding-bottom: 8px;
+  }
+
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  ion-card-subtitle {
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  ion-card-content {
+    font-size: 0.9rem;
+    padding-top: 8px;
+  }
+}
+
+// Responsivo: ajustar tamaño en pantallas más grandes
+@media (min-width: 768px) {
+  .place-card {
+    flex: 0 0 320px;
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+
+// Opcional: Indicador visual de que hay más contenido
+.cards-wrapper::after {
+  content: '';
+  flex: 0 0 8px; // Pequeño espacio al final
+}

@@ -1,0 +1,50 @@
+// Dale un fondo sutil a la página para que
+// las listas "inset" resalten
+ion-content {
+  --background: var(--ion-color-light, #f4f5f8);
+}
+
+// Estilos para la sección de perfil (Avatar y texto)
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  // Un borde sutil con el color primario de tu app
+  border: 2px solid var(--ion-color-primary);
+  margin-bottom: 12px;
+
+
+}
+
+// Estilos para el nombre de usuario
+.profile-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+// Estilos para el correo
+.profile-email {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+  margin-top: 4px;
+}
+
+// Opcional: Haz que el título de la lista resalte
+ion-list-header ion-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+// Asegura que el ícono de cerrar sesión también sea rojo
+ion-item[color="danger"] ion-icon {
+  color: var(--ion-color-danger);
+}

@@ -1,0 +1,91 @@
+<ion-grid style="height: 100%;">
+  <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+    <ion-col size="12" size-md="6" size-lg="4">
+      <h1 class="ion-text-center">REGISTRARSE</h1>
+      <form [formGroup]="form">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Correo Electronico</ion-label>
+            <ion-input type="text" formControlName="email" ></ion-input>
+            @if (email.touched && email.invalid){
+              @if (email.hasError('required')){
+                <ion-note color="danger">Campo Requerido</ion-note>
+              }
+              @if(email.hasError('email')){
+                <ion-note color="danger">Use un formato valido nombre123/nombre&#64;gmail.com</ion-note>
+              }
+              @if(email.hasError('notDomain')){
+                <ion-note color="danger">El correo debe ser (gmail/hotmail) y terminar con (com/es)</ion-note>
+              }
+              @if(email.hasError('notUser')){
+                <ion-note color="danger">Use un formato valido nombre123/nombre&#64;gmail.com</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre Usuario</ion-label>
+            <ion-input type="text" formControlName="username" ></ion-input>
+            @if(username.invalid && username.touched){
+              @if (username.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if (username.hasError('minlength')){
+                <ion-note color="danger">*Minimo 5 caracteres</ion-note>
+              }
+              @if (username.hasError('maxlength')){
+                <ion-note color="danger">*Maximo 15 caracteres</ion-note>
+              }
+              @if(username.hasError('hasSpace')){
+                <ion-note color="danger">*No se permiten espacios</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" value="NeverGonnaGiveYouUp" formControlName="password">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            @if(password.touched && password.invalid){
+              @if (password.hasError('required')){
+                <ion-note color="danger">*Campo Requerido</ion-note>
+              }
+              @if(password.hasError('minlength')){
+                <ion-note color="danger">*Minimo 6 caracteres</ion-note>
+              }
+              @if(password.hasError('maxlength')){
+                <ion-note color="danger">*Maximo 10 caracteres</ion-note>
+              }
+              @if(password.hasError('notSpecialChart')){
+                <ion-note color="danger">*necesita un caracter especial</ion-note>
+              }
+              @if(password.hasError('hasSpace')){
+                <ion-note color="danger">*No se permiten espacios</ion-note>
+              }
+              @if(password.hasError('notNumber')){
+                <ion-note color="danger">*necesita al menos un numero</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
+            <ion-input type="password" value="NeverGonnaGiveYouUp" formControlName="confirmPassword">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            @if(confirmPassword.touched){
+              @if (form.hasError('notEqual')){
+                <ion-note color="danger">*Las contraseñas no son iguales</ion-note>
+              }
+            }
+          </ion-item>
+          <ion-button shape="round" expand="full"  style="margin-top: 20px;" [disabled]="form.invalid">
+            Registrase
+          </ion-button>
+          <ion-button shape="round" expand="full" href="auth/login"   style="margin-top: 20px;">
+            Iniciar Sesion
+          </ion-button>
+          <ion-note>Tiens una cuenta?</ion-note>
+        </ion-list>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-grid>
