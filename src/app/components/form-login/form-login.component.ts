@@ -33,22 +33,23 @@ import {Router} from "@angular/router";
 export class FormLoginComponent  implements OnInit {
   formBuilder = inject(FormBuilder);
   router = inject(Router)
-  authService = inject(AuthServices);
+  authService = inject(AuthServices)
 
   formLogin = this.formBuilder.group({
-    correo: ['', [Validators.required, Validators.email]],
-    contrasena: ['', [Validators.required]]
+    username: ['', [Validators.required,]],
+    password: ['', [Validators.required]]
   });
 
   onSubmit() {
-    let email = this.formLogin.get('correo')?.value;
-    let password = this.formLogin.get('contrasena')?.value;
-    if(email && password){
-      if(email === 'a'){
-        sessionStorage.setItem("rol", "ADMIN");
-        this.router.navigate(['/create-place'])
-      }
-    }
+   const data = this.formLogin.value;
+   if(this.formLogin.valid){
+     this.authService.login(data).subscribe(()=>{
+        this.router.navigate(['home']);
+     },(error)=>{
+       console.log(error);
+     })
+   }
+
   }
 
 

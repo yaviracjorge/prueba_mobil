@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911016825083",
+    "project_id": "notifiacion-2b3e6",
+    "storage_bucket": "notifiacion-2b3e6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911016825083:android:fce15a9016fba01571605e",
+        "android_client_info": {
+          "package_name": "com.yavirac.diarioturistico"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7YRh7UtomK0GdJH1CfFgPY7KcT_LtHGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

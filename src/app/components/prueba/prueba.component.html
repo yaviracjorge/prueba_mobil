@@ -1,30 +1,32 @@
-<ion-grid style="height: 100%;">
-  <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ubicación</ion-card-title>
+      <ion-card-subtitle>GPS en tiempo real</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="getLocationOnce()" >
+        <ion-icon name="locate" slot="start"></ion-icon>
+        Obtener ubicación actual
+      </ion-button>
 
-    <ion-col size="12" size-md="6" size-lg="4">
 
-      <form [formGroup]="formLogin">
-        <ion-list>
-          <ion-item>
-            <ion-label position="floating">Username</ion-label>
-            <ion-input type="text" name="username" formControlName="correo" ></ion-input>
-          </ion-item>
+      <div class="ion-margin-top">
+        <p><strong>Lat:</strong> {{ lat || '—' }} | <strong>Lng:</strong> {{ lng || '—' }}</p>
+      </div>
 
-          <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input  name="password" formControlName="contrasena"></ion-input>
-          </ion-item>
+      <!-- Mapa web opcional (solo muestra un mapa estático con marker usando OpenStreetMap/Leaflet externo) -->
 
-          <ion-button shape="round" expand="full" type="submit" style="margin-top: 20px;">
-            Iniciar Sesion
-          </ion-button>
-          <ion-button shape="round" href="auth/register" expand="full" style="margin-top: 20px;">
-            Registrase
-          </ion-button>
-        </ion-list>
-      </form>
-
-    </ion-col>
-  </ion-row>
-</ion-grid>
-{{this.users | json}}
+      @if (lat && lng && mapUrlSafe) {
+        <div class="map-wrapper">
+          <iframe
+            [src]="mapUrlSafe"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            style="border:0">
+          </iframe>
+        </div>
+      }
+    </ion-card-content>
+  </ion-card>
+</ion-content>

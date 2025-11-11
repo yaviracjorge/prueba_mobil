@@ -16,13 +16,15 @@ export const routes: Routes = [
     path: 'account',
     loadComponent: () => import('./pages/account/account.page').then( m => m.AccountPage)
   },
-  {
+  /*{path:'',
+  component:PruebaComponent},
+  */{
     path:'prueba',
-    component:MenuComponent
+    component:PruebaComponent
   },
   {
     path:'**',
-    component:HomePage
+    component:PruebaComponent
   }
 
 
