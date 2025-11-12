@@ -1,4 +1,10 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
-  <app-menu></app-menu>
+  @if(valid){
+    <app-menu1></app-menu1>
+  } @else {
+    <app-menu></app-menu>
+  }
+
+
 </ion-app>

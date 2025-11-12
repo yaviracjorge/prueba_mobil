@@ -18,14 +18,14 @@ export const routes: Routes = [
   },
   /*{path:'',
   component:PruebaComponent},
-  */{
+  {
     path:'prueba',
     component:PruebaComponent
   },
   {
     path:'**',
     component:PruebaComponent
-  }
+  }*/
 
 
 

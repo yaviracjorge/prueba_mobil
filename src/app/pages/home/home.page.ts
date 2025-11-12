@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -7,10 +7,11 @@ import {
   IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonContent,
   IonHeader,
-  IonIcon,
+  IonIcon, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {AuthServices} from "../../services/auth.services";
 
 interface Place {
   id: number;
@@ -25,9 +26,13 @@ interface Place {
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText]
 })
 export class HomePage implements OnInit {
+  authService = inject(AuthServices);
+  get valid(): boolean {
+    return this.authService.istoken(); // <-- Esto se ejecutará en cada ciclo de detección de cambios
+  }
   places: Place[] = [
     {
       id: 1,

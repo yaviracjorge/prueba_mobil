@@ -65,7 +65,7 @@ export class FormRegisterComponent  implements OnInit {
     if(this.form.valid){
 
       this.authService.register(data).subscribe(()=>{
-        this.router.navigate(['login']);
+        this.router.navigate(['auth/login']);
       },
         (error)=>{
         console.log(error);

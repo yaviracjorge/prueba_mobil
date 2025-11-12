@@ -43,7 +43,8 @@ export class FormLoginComponent  implements OnInit {
   onSubmit() {
    const data = this.formLogin.value;
    if(this.formLogin.valid){
-     this.authService.login(data).subscribe(()=>{
+     this.authService.login(data).subscribe((authRespone:any)=>{
+       sessionStorage.setItem('token',authRespone.token);
         this.router.navigate(['home']);
      },(error)=>{
        console.log(error);

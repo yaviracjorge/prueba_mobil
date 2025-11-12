@@ -13,9 +13,14 @@
       Crea tu Propio lugar Turistico
     </ion-button>
 
-    <ion-button shape="round" expand="full" href="auth/login" style="margin-top: 20px;">
-      Iniciar Sesion
-    </ion-button>
+    @if(valid){
+      <ion-text>Bienvenido</ion-text>
+    } @else {
+      <ion-button shape="round" expand="full" href="auth/login" style="margin-top: 20px;">
+        Iniciar Sesion
+      </ion-button>
+    }
+
   </div>
 
   <!-- Contenedor de scroll horizontal -->

@@ -9,7 +9,7 @@ import {
 import {ModalComponent, OptionModal} from "../../../components/modal/modal.component";
 
 @Component({
-    selector: 'app-menu',
+    selector: 'app-menu1',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
   imports: [
