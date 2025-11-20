@@ -18,7 +18,7 @@
       <ion-label>Mi Diario</ion-label>
     </ion-list-header>
 
-    <ion-item [button]="true" [detail]="true" >
+    <ion-item [button]="true" [detail]="true"  routerLink="/show-place">
       <ion-icon slot="start" name="location-outline"></ion-icon>
       <ion-label>Mis Lugares</ion-label>
     </ion-item>
@@ -36,9 +36,9 @@
 
 
   <ion-list [inset]="true">
-    <ion-item [button]="true" color="danger" >
+    <ion-item>
       <ion-icon slot="start" name="log-out-outline"></ion-icon>
-      <ion-label>Cerrar Sesión</ion-label>
+      <ion-button expand="block" color="danger" (click)="logout()">Cerrar Sesion</ion-button>
     </ion-item>
   </ion-list>
 

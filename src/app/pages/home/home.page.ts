@@ -12,6 +12,9 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {AuthServices} from "../../services/auth.services";
+import {Router, RouterLink} from "@angular/router";
+import {PlacesService} from "../../services/places.service";
+import {PlaceShowInterface} from "../../interfaces/place-show-interface";
 
 interface Place {
   id: number;
@@ -26,13 +29,22 @@ interface Place {
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText,RouterLink]
 })
 export class HomePage implements OnInit {
   authService = inject(AuthServices);
-  get valid(): boolean {
-    return this.authService.istoken(); // <-- Esto se ejecutará en cada ciclo de detección de cambios
+  placeService = inject(PlacesService)
+  router = inject(Router)
+
+  placesUser:PlaceShowInterface[]=[]
+
+  async showPlaces(){
+    await this.placeService.showPlaces().subscribe(res=>{
+      console.log(res);
+      this.placesUser = res
+    })
   }
+
   places: Place[] = [
     {
       id: 1,
@@ -72,16 +84,19 @@ export class HomePage implements OnInit {
   ];
 
 
+  get valid(): boolean {
+    return this.authService.istoken(); // <-- Esto se ejecutará en cada ciclo de detección de cambios
+  }
   constructor() {
-
+    this.showPlaces()
   }
 
   ngOnInit() {
   }
 
-  goToPlaceDetail(placeId: number) {
-    console.log('Navegar al lugar:', placeId);
+  goToPlaceDetail() {
+    console.log('Navegar al lugar:');
     // Aquí podrías usar el Router para navegar
-    // this.router.navigate(['/place-detail', placeId]);
+    this.router.navigate(['/show-place']);
   }
 }

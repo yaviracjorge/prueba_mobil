@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ place.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="text-align: center; margin-bottom: 15px;">
+    <img [src]="place.picture" alt="Lugar Turistico" style="width: 100%; border-radius: 10px; max-height: 300px; object-fit: cover;"/>
+  </div>
+
+  <div>
+    <h2 style="margin-top: 0;">{{ place.typePlace }}</h2>
+    <p style="font-size: 1.1rem; color: #888;">{{ place.description }}</p>
+
+    <div style="margin-top: 20px;">
+      <p>
+        <ion-icon name="location" color="primary" style="vertical-align: middle;"></ion-icon>
+        <strong> Ubicación:</strong> {{ place.city }} - {{ place.provincia }}
+      </p>
+      <p>
+        <ion-icon name="time" color="warning" style="vertical-align: middle;"></ion-icon>
+        <strong> Horario:</strong> {{ place.schedules }}
+      </p>
+      <p>
+        <ion-icon name="cash" color="success" style="vertical-align: middle;"></ion-icon>
+        <strong> Precio:</strong> $ {{ place.price }}
+      </p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="tertiary" (click)="action('edit')">
+          <ion-icon slot="start" name="create"></ion-icon>
+          Editar
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" color="danger" (click)="action('delete')">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Eliminar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

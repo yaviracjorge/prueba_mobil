@@ -1,0 +1,21 @@
+
+<ion-content [fullscreen]="true">
+  <!-- Contenedor de scroll horizontal -->
+  <div class="cards-scroll-container">
+    <h2 class="section-title">Mis Lugares Turisticos</h2>
+
+    <div class="cards-wrapper">
+      <!-- Tarjetas dinámicas desde el array -->
+      <ion-card class="place-card" *ngFor="let place of places"(click)="openModalDetail(place)">
+        <img [alt]="place.name" [src]="place.picture" />
+        <ion-card-header>
+          <ion-card-title>{{ place.name }}</ion-card-title>
+          <ion-card-subtitle>{{ place.description }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ place.city }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

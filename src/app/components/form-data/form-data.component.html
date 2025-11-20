@@ -1,8 +1,9 @@
-<ion-grid style="height: 100%;">
-  <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+<ion-content class="ion-padding">
+<ion-grid >
+  <ion-row class="ion-justify-content-center ion-align-items-center" >
     <ion-col size="12" size-md="6" size-lg="4">
       <h1 class="ion-text-center">INGRESA TU LUGAR TURISTICO</h1>
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <ion-list>
           <ion-item>
             <ion-label position="floating">Nombre</ion-label>
@@ -47,9 +48,6 @@
               @if (city.hasError('required')){
                 <ion-note color="danger">*Campo Requerido</ion-note>
               }
-              @if(city.hasError('hasSpace')){
-                <ion-note color="danger">*No se permiten espacios</ion-note>
-              }
               @if(city.hasError('notNumber')){
                 <ion-note color="danger">*No se permiten numeros</ion-note>
               }
@@ -62,24 +60,40 @@
               @if (typePlace.hasError('required')){
                 <ion-note color="danger">*Campo Requerido</ion-note>
               }
-              @if(typePlace.hasError('hasSpace')){
-                <ion-note color="danger">*No se permiten espacios</ion-note>
-              }
               @if(typePlace.hasError('notNumber')){
                 <ion-note color="danger">*No se permiten numeros</ion-note>
               }
             }
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Caracteristicas</ion-label>
-            <ion-input type="text" formControlName="caracteristics"></ion-input>
-            @if(caracteristics.touched && caracteristics.invalid){
-              @if (caracteristics.hasError('required')){
+            <ion-button expand="block" (click)="onTakePhoto()" formControlName="picture">
+              Tomar foto
+            </ion-button>
+            @if(picture.touched && picture.invalid){
+              @if (picture.hasError('required')){
                 <ion-note color="danger">*Campo Requerido</ion-note>
               }
-              @if(caracteristics.hasError('maxlength')){
-                <ion-note color="danger">*Maximo 200 caracteres</ion-note>
-              }
+            }
+            @if (photos.length) {
+              <ion-grid class="ion-margin-top">
+                <ion-row>
+                  @for (p of photos; track p.fileName) {
+                    <ion-col size="12" sizeMd="3">
+                      <ion-card class="photo-card">
+                        <img [src]="p.webviewPath" alt="img not found"/>
+                        <ion-item lines="none">
+                          <ion-label>{{ p.fileName }}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                          <ion-button color="danger" fill="solid" (click)="deletePhoto(p)">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                          </ion-button>
+                        </ion-item>
+                      </ion-card>
+                    </ion-col>
+                  }
+                </ion-row>
+              </ion-grid>
             }
           </ion-item>
           <ion-item>
@@ -104,8 +118,10 @@
           <ion-button shape="round" expand="full" type="submit" style="margin-top: 20px;" [disabled]="form.invalid">
             Ingresar Lugar Turistico
           </ion-button>
+          <div style="height: 100px;"></div>
         </ion-list>
       </form>
     </ion-col>
   </ion-row>
 </ion-grid>
+</ion-content>

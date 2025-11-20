@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import {FormLoginComponent} from "./components/form-login/form-login.component";
-import {PruebaComponent} from "./components/prueba/prueba.component";
-import {HomePage} from "./pages/home/home.page";
-import {MenuComponent} from "./layout/singIn/menu/menu.component";
+import {CreateRoutePage} from "./pages/create-route/create-route.page";
 
 export const routes: Routes = [
   {path:'',
@@ -13,9 +10,13 @@ export const routes: Routes = [
     loadChildren:()=>import('./pages/auth/auth.routes').then(m=>m.routes)
   },
   {
-    path: 'account',
-    loadComponent: () => import('./pages/account/account.page').then( m => m.AccountPage)
+    path:'show',
+    component:CreateRoutePage
   },
+  {
+    path: 'show-place',
+    loadComponent: () => import('./pages/show-place/show-place.page').then( m => m.ShowPlacePage)
+  }
   /*{path:'',
   component:PruebaComponent},
   {
