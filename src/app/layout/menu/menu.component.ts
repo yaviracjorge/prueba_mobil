@@ -9,6 +9,7 @@ import { addIcons } from 'ionicons';
 import {addCircleOutline, home, person} from 'ionicons/icons';
 import {AuthServices} from "../../services/auth.services";
 import {ModalComponent, OptionModal} from "../../components/modal/modal.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -20,6 +21,7 @@ import {ModalComponent, OptionModal} from "../../components/modal/modal.componen
     IonTabButton,
     IonIcon,
     IonLabel,
+    RouterLink,
   ]
 })
 export class MenuComponent  implements OnInit {

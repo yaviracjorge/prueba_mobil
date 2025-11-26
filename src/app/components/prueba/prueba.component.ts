@@ -67,11 +67,3 @@ export class PruebaComponent  implements OnInit {
 
 }
 
-//private apiUrl = 'http://localhost:8080/usuarios';
-//http = inject(HttpClient)
-/* findAll(){
-   this.http.get(`${this.apiUrl}/usuarios`).subscribe(res=>{
-     console.log(res);
-   })
-
- }*/

@@ -19,18 +19,20 @@
     <p style="font-size: 1.1rem; color: #888;">{{ place.description }}</p>
 
     <div style="margin-top: 20px;">
-      <p>
-        <ion-icon name="location" color="primary" style="vertical-align: middle;"></ion-icon>
-        <strong> Ubicación:</strong> {{ place.city }} - {{ place.provincia }}
-      </p>
-      <p>
-        <ion-icon name="time" color="warning" style="vertical-align: middle;"></ion-icon>
-        <strong> Horario:</strong> {{ place.schedules }}
-      </p>
+
       <p>
         <ion-icon name="cash" color="success" style="vertical-align: middle;"></ion-icon>
         <strong> Precio:</strong> $ {{ place.price }}
       </p>
+      <p>
+        <ion-icon name="location-outline" color="primary" style="vertical-align: middle;"></ion-icon>
+        <strong> Ubicación:</strong> {{ place.city }} - {{ place.provincia }}
+      </p>
+      <p>
+        <ion-icon name="map-outline" color="secondary" style="vertical-align: middle;"></ion-icon>
+        <strong>Mapa</strong>
+      </p>
+      <div id="map-detail"></div>
     </div>
   </div>
 </ion-content>

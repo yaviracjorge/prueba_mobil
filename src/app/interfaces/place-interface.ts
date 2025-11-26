@@ -5,7 +5,9 @@ export interface PlaceInterface {
   provincia: string;
   city: string;
   typePlace:string;
-  schedules:string;
   price:string;
   picture:string;
+  latud:number;
+  lngtud:number;
+
 }

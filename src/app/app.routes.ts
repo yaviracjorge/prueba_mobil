@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {CreateRoutePage} from "./pages/create-route/create-route.page";
+
 
 export const routes: Routes = [
   {path:'',
@@ -8,10 +8,6 @@ export const routes: Routes = [
   {
     path:'auth',
     loadChildren:()=>import('./pages/auth/auth.routes').then(m=>m.routes)
-  },
-  {
-    path:'show',
-    component:CreateRoutePage
   },
   {
     path: 'show-place',

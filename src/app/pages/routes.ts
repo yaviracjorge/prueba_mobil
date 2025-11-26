@@ -28,6 +28,7 @@ export const routes: Routes = [
       },
       {
         path:'show-place',
+        canActivate:[authGuard],
         loadComponent:()=>import('./show-place/show-place.page').then( m => m.ShowPlacePage)
       },
       {

@@ -6,8 +6,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const rol = localStorage.getItem("rol")
 
   if (rol !== "USER") {
-    // ✅ CAMBIO: Devolvemos el UrlTree directamente.
-    // Esto cancela la ruta actual y redirige inmediatamente sin "rebotes".
     return router.createUrlTree(['/auth/login']);
   }
   return true;

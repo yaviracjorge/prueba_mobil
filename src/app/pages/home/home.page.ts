@@ -38,10 +38,15 @@ export class HomePage implements OnInit {
 
   placesUser:PlaceShowInterface[]=[]
 
-  async showPlaces(){
-    await this.placeService.showPlaces().subscribe(res=>{
+
+  showPlaces(){
+    this.placeService.showPlaces().subscribe(res=>{
+      this.placesUser = res.map((namePhoto) =>{
+        const name:any =  namePhoto.picture.split('/').pop();
+        namePhoto.picture = "http://192.168.100.7:8080/places/"+ name;
+        return namePhoto;
+      })
       console.log(res);
-      this.placesUser = res
     })
   }
 
@@ -58,45 +63,35 @@ export class HomePage implements OnInit {
       name: 'Mitad del Mundo',
       category: 'Monumento Histórico',
       description: 'El famoso monumento que marca la línea ecuatorial del planeta.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Mitad_del_mundo.JPG/800px-Mitad_del_mundo.JPG'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Calacali_MitadDelMundo.JPG'
     },
     {
       id: 3,
       name: 'Centro Histórico',
       category: 'Patrimonio Cultural',
       description: 'Descubre la arquitectura colonial y la rica historia de Quito.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Quito_aerial_view.jpg/800px-Quito_aerial_view.jpg'
-    },
-    {
-      id: 4,
-      name: 'Teleférico',
-      category: 'Aventura y Naturaleza',
-      description: 'Vistas espectaculares de la ciudad desde las alturas del volcán Pichincha.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Teleferico_Quito_01.jpg/800px-Teleferico_Quito_01.jpg'
-    },
-    {
-      id: 5,
-      name: 'Basílica del Voto Nacional',
-      category: 'Arquitectura Religiosa',
-      description: 'Imponente iglesia neogótica con gárgolas únicas de fauna ecuatoriana.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Bas%C3%ADlica_del_Voto_Nacional%2C_Quito%2C_Ecuador%2C_2015-07-22%2C_DD_50.JPG/800px-Bas%C3%ADlica_del_Voto_Nacional%2C_Quito%2C_Ecuador%2C_2015-07-22%2C_DD_50.JPG'
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Calacali_MitadDelMundo.JPG'
     }
   ];
-
 
   get valid(): boolean {
     return this.authService.istoken(); // <-- Esto se ejecutará en cada ciclo de detección de cambios
   }
   constructor() {
-    this.showPlaces()
+
   }
 
   ngOnInit() {
+
   }
 
+  ionViewWillEnter() {
+    console.log("¡La vista va a entrar! 📺 Refrescando datos...");
+    this.showPlaces()
+    // 2. Aquí es donde debes llamar a tu función para que se
+    // ejecute CADA VEZ que vuelves a la pantalla.
+  }
   goToPlaceDetail() {
-    console.log('Navegar al lugar:');
-    // Aquí podrías usar el Router para navegar
     this.router.navigate(['/show-place']);
   }
 }

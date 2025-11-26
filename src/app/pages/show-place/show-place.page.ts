@@ -5,16 +5,12 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar
+  IonContent
 } from '@ionic/angular/standalone';
 import {ModalController} from "@ionic/angular/standalone";
 import {ModalDetailsComponent} from "../../components/modal-details/modal-details.component";
 import {PlaceInterface} from "../../interfaces/place-interface";
 import {PlacesService} from "../../services/places.service";
-import {Place} from "../create-route/create-route.page";
 import {PlaceShowInterface} from "../../interfaces/place-show-interface";
 import {Router} from "@angular/router";
 
@@ -23,7 +19,7 @@ import {Router} from "@angular/router";
   templateUrl: './show-place.page.html',
   styleUrls: ['./show-place.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
+  imports: [IonContent, CommonModule, FormsModule, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
 })
 export class ShowPlacePage implements OnInit {
   private modalCtrl = inject(ModalController);
@@ -31,10 +27,14 @@ export class ShowPlacePage implements OnInit {
   router = inject(Router)
   places:PlaceShowInterface[]=[];
 
-  async showPlaces(){
-    await this.placeService.showPlaces().subscribe(res=>{
+   showPlaces(){
+     this.placeService.showPlaces().subscribe(res=>{
+      this.places = res.map((namePhoto) =>{
+        const name:any =  namePhoto.picture.split('/').pop();
+        namePhoto.picture = "http://192.168.100.7:8080/places/"+ name;
+        return namePhoto;
+      })
       console.log(res);
-      this.places = res
     })
   }
 
@@ -57,16 +57,21 @@ export class ShowPlacePage implements OnInit {
     }
   }
   constructor() {
-    this.showPlaces();
+
   }
 
   ngOnInit() {
   }
+  ionViewWillEnter() {
+    console.log("¡La vista va a entrar! 📺 Refrescando datos...");
+    this.showPlaces()
+    // 2. Aquí es donde debes llamar a tu función para que se
+    // ejecute CADA VEZ que vuelves a la pantalla.
+  }
+
 
   private edit(place:PlaceInterface) {
     this.router.navigate(['/create-place'],{state:{place:place}})
-
-
   }
 
   private delete(place:PlaceInterface) {
